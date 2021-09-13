@@ -43,7 +43,7 @@ const Post = ({ post, setCurrentId }) => {
 
             {/* Post Message */}
             <CardContent>
-                <Typography gutterBottom>{ post.message }</Typography>
+                <Typography variant="body2">{ post.message }</Typography>
             </CardContent>
 
             {/* Like / Delete */}
