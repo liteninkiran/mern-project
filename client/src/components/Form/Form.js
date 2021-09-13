@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from 'react';
-import useStyles from './styles';
-import { TextField, Button, Typography, Paper } from '@material-ui/core';
-import FileBase from 'react-file-base64';
+import React from 'react';
+import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { TextField, Button, Typography, Paper } from '@material-ui/core';
+
 import { createPost, updatePost } from '../../actions/posts';
+import FileBase from 'react-file-base64';
+import useStyles from './styles';
 
 const Form = ({currentId, setCurrentId}) => {
 
