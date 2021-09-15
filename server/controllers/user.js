@@ -68,8 +68,7 @@ export const signup = async (req, res) => {
 
         // Create new user
         const newUser = await User.create({
-            firstName,
-            lastName,
+            name: firstName + ' ' + lastName,
             email,
             password: hashedPassword,
         });
@@ -85,7 +84,7 @@ export const signup = async (req, res) => {
 
         const token = jwt.sign(payload, secret, options);
 
-        res.status(200).json(newUser, token);
+        res.status(200).json({ result: newUser, token });
     } catch (error) {
         res.status(404).json({ message: error.message });
     }
