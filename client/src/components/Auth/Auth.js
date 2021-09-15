@@ -4,6 +4,7 @@ import { Container, Typography, Avatar, Button, Paper, Grid } from '@material-ui
 import { GoogleLogin } from 'react-google-login';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import { signin, signup } from '../../actions/auth';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 
 import Icon from './Icon';
@@ -29,6 +30,11 @@ const Auth = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        if (isSignup) {
+            dispatch(signup(formData, history));
+        } else {
+            dispatch(signin(formData, history));
+        }
     };
 
     const handleChange = (e) => {
