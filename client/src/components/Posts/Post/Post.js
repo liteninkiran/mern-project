@@ -48,7 +48,7 @@ const Post = ({ post, setCurrentId }) => {
         <Card className={ classes.card }>
 
             {/* Image (Title on linger) */}
-            <CardMedia className={ classes.media } image={ post.selectedFile } title={ post.title } />
+            <CardMedia className={ classes.media } image={ post?.selectedFile } title={ post.title } />
 
             {/* Created */}
             <div className={ classes.overlay }>
