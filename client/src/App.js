@@ -15,7 +15,7 @@ const App = () => {
 
         <BrowserRouter>
 
-            <Container maxwidth="xl">
+            <Container maxwidth="xl" style={{maxWidth: "none"}}>
 
                 {/* Navbar */}
                 <Navbar />
