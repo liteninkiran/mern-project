@@ -2,10 +2,10 @@ import React from 'react';
 import { useEffect, useState } from 'react';
 import { Container, Grow, Grid, AppBar, TextField, Button, Paper } from '@material-ui/core';
 import { useDispatch } from 'react-redux';
-import { getPosts } from '../../actions/posts';
 import { useHistory, useLocation } from 'react-router-dom';
 import ChipInput from 'material-ui-chip-input';
 
+import { getPosts, getPostsBySearch } from '../../actions/posts';
 import Posts from '../../components/Posts/Posts';
 import Form from '../../components/Form/Form';
 import Pagination from '../Pagination';
@@ -34,8 +34,8 @@ const Home = () => {
 
     const searchPost = () => {
         if (search.trim() || tags) {
-            // dispatch(getPostsBySearch({ search, tags: tags.join(',') }));
-            // history.push(`/posts/search?searchQuery=${search || 'none'}&tags=${tags.join(',')}`);
+            dispatch(getPostsBySearch({ search, tags: tags.join(',') }));
+            history.push(`/posts/search?searchQuery=${search || 'none'}&tags=${tags.join(',')}`);
         } else {
             history.push('/');
         }
