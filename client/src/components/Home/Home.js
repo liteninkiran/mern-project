@@ -28,10 +28,6 @@ const Home = () => {
     const page = query.get('page') || 1;
     const searchQuery = query.get('searchQuery');
 
-    useEffect(() => {
-        dispatch(getPosts());
-    }, [dispatch]);
-
     const searchPost = () => {
         if (search.trim() || tags) {
             dispatch(getPostsBySearch({ search, tags: tags.join(',') }));
