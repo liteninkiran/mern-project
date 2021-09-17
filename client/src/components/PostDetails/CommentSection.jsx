@@ -42,21 +42,23 @@ const CommentSection = ({ post }) => {
                     <div ref={commentsRef} />
                 </div>
 
-                {/* Form */}
-                <div style={{ width: '70%' }}>
+                {/* Comment Form */}
+                {user?.result?.name && (
+                    <div style={{ width: '70%' }}>
 
-                    {/* Heading */}
-                    <Typography gutterBottom variant="h6">Write a comment</Typography>
+                        {/* Heading */}
+                        <Typography gutterBottom variant="h6">Write a comment</Typography>
 
-                    {/* Input Control */}
-                    <TextField fullWidth rows={4} variant="outlined" label="Comment" multiline value={comment} onChange={(e) => setComment(e.target.value)} />
-                    <br />
+                        {/* Input Control */}
+                        <TextField fullWidth rows={4} variant="outlined" label="Comment" multiline value={comment} onChange={(e) => setComment(e.target.value)} />
+                        <br />
 
-                    {/* Submit Button */}
-                    <Button style={{ marginTop: '10px' }} fullWidth disabled={!comment.length} color="primary" variant="contained" onClick={handleComment}>
-                        Comment
-                    </Button>
-                </div>
+                        {/* Submit Button */}
+                        <Button style={{ marginTop: '10px' }} fullWidth disabled={!comment.length} color="primary" variant="contained" onClick={handleComment}>
+                            Comment
+                        </Button>
+                    </div>
+                )}
             </div>
         </div>
     );
