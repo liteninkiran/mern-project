@@ -44,6 +44,7 @@ export default makeStyles((theme) => ({
         height: '200px',
         overflowY: 'auto',
         marginRight: '30px',
+        width: '70%',
     },
     postMessage: {
         marginTop: '20px',

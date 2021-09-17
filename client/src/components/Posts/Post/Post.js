@@ -1,4 +1,5 @@
 import React from 'react';
+import { useState } from 'react';
 import useStyles from './styles';
 import { Card, CardActions, CardContent, CardMedia, Button, Typography, ButtonBase } from '@material-ui/core';
 import { useDispatch } from 'react-redux';
@@ -16,23 +17,23 @@ const Post = ({ post, setCurrentId }) => {
     const history = useHistory();
     const dispatch = useDispatch();
     const user = JSON.parse(localStorage.getItem('profile'));
+    const [likes, setLikes] = useState(post?.likes);
+    const userId = user?.result.googleId || user?.result?._id;
+    const hasLikedPost = post.likes.find((like) => like === userId);
 
     const Likes = () => {
-        if (post.likes.length > 0) {
-
-            // Check if post has been liked by the logged-in user
-            const likedByUser = post.likes.find((like) => like === user?.result?.googleId || user?.result?._id) !== undefined;
+        if (likes.length > 0) {
 
             // Singlular or plural like(s)
-            const label = post.likes.length === 1 ? 'like' : 'likes';
+            const label = likes.length === 1 ? 'like' : 'likes';
 
             // Standard text showing total number of likes
-            const standardText = `${post.likes.length} ${label}`;
+            const standardText = `${likes.length} ${label}`;
 
             // If possible, show more verbose text if user has liked their own post
-            const verboseText = post.likes.length > 2 ? `You and ${post.likes.length - 1} others` : standardText;
+            const verboseText = likes.length > 2 ? `You and ${likes.length - 1} others` : standardText;
 
-            return likedByUser ? (
+            return hasLikedPost ? (
                 <><ThumbUpAltIcon fontSize="small" />&nbsp;{verboseText}</>
             ) : (
                 <><ThumbUpAltOutlined fontSize="small" />&nbsp;{standardText}</>
@@ -42,8 +43,20 @@ const Post = ({ post, setCurrentId }) => {
         return <><ThumbUpAltOutlined fontSize="small" />&nbsp;Like</>;
     }
 
-    const handleDeletePost = () => {
+    const handleDeletePost = async () => {
         dispatch(deletePost(post._id));
+    };
+
+    const handleLikePost = async () => {
+
+        dispatch(likePost(post._id));
+
+        if (hasLikedPost) {
+            setLikes(post.likes.filter((id) => id !== userId));
+        } else {
+            setLikes([...post.likes, userId]);
+        }
+        
     };
 
     const openPost = () => {
@@ -77,7 +90,7 @@ const Post = ({ post, setCurrentId }) => {
                         style={{ color: 'white' }}
                         size="small"
                     >
-                        <MoreHorizIcon fontSize="default" />
+                        <MoreHorizIcon fontSize="medium" />
                     </Button>
                     </div>
                 )}
@@ -101,13 +114,13 @@ const Post = ({ post, setCurrentId }) => {
             <CardActions className={ classes.cardActions }>
 
                 {/* Like */}
-                <Button size="small" color="primary" onClick={ () => dispatch(likePost(post._id)) } disabled={!user?.result}>
+                <Button size="small" color="primary" onClick={handleLikePost} disabled={!user?.result}>
                     <Likes />
                 </Button>
 
                 {/* Delete */}
                 {( user?.result?.googleId === post.creator || user?.result?._id === post.creator) && (
-                    <Button size="small" color="primary" onClick={ handleDeletePost }>
+                    <Button size="small" color="primary" onClick={handleDeletePost}>
                         <DeleteIcon fontSize="small" />Delete
                     </Button>
                 )}
