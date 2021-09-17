@@ -1,4 +1,4 @@
-import { FETCH_ALL, FETCH_BY_SEARCH, CREATE, UPDATE, DELETE, START_LOADING, END_LOADING } from '../constants/actionTypes';
+import { FETCH_ALL, FETCH_BY_SEARCH, FETCH_POST, CREATE, UPDATE, DELETE, START_LOADING, END_LOADING } from '../constants/actionTypes';
 
 const reducer = (state = { isLoading: true, posts: [] }, action) => {
     switch (action.type) {
@@ -12,7 +12,12 @@ const reducer = (state = { isLoading: true, posts: [] }, action) => {
         case FETCH_BY_SEARCH:
             return {
                 ...state,
-                posts: action.payload.data,
+                posts: action.payload,
+            };
+        case FETCH_POST:
+            return {
+                ...state,
+                post: action.payload,
             };
         case CREATE          : return { ...state, posts: [...state.posts, action.payload] };
         case UPDATE          : return { ...state, posts: state.posts.map((post) => (post._id === action.payload._id ? action.payload : post)) };
