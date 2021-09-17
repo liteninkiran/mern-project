@@ -29,10 +29,11 @@ export const getPost = (id) => async (dispatch) => {
     }
 };
 
-export const createPost = (post) => async (dispatch) => {
+export const createPost = (post, history) => async (dispatch) => {
     try {
         const { data } = await api.createPost(post);
         dispatch({ type: CREATE, payload: data });
+        history.push(`/posts/${data._id}`);
     } catch (error) {
         console.log(error.message);
     }
