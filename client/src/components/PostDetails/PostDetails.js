@@ -5,6 +5,8 @@ import { useParams, useHistory } from 'react-router-dom';
 import moment from 'moment';
 
 import { getPost, getPostsBySearch } from '../../actions/posts';
+import CommentSection from './CommentSection';
+import ChatSection from './ChatSection';
 import useStyles from './styles';
 
 const PostDetails = () => {
@@ -65,11 +67,11 @@ const PostDetails = () => {
                     <Divider style={{ margin: '20px 0' }} />
 
                     {/* Realtime chat */}
-                    <Typography variant="body1"><strong>Realtime Chat - coming soon!</strong></Typography>
+                    <ChatSection />
                     <Divider style={{ margin: '20px 0' }} />
 
                     {/* Comments */}
-                    <Typography variant="body1"><strong>Comments - coming soon!</strong></Typography>
+                    <CommentSection post={post} />
                     <Divider style={{ margin: '20px 0' }} />
 
                 </div>
