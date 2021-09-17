@@ -78,4 +78,3 @@ export const getPostsBySearch = (searchQuery) => async (dispatch) => {
         console.log(error);
     }
 };
-
