@@ -3,8 +3,15 @@ import { FETCH_ALL, CREATE, UPDATE, DELETE, START_LOADING, END_LOADING, FETCH_BY
 
 export const getPosts = (page) => async (dispatch) => {
     try {
+        dispatch({ type: START_LOADING });
+
+        // Get posts
         const { data } = await api.fetchPosts(page);
+        console.log('Get Posts...');
+        console.log(data);
         dispatch({ type: FETCH_ALL, payload: data });
+
+        dispatch({ type: END_LOADING });
     } catch (error) {
         console.log(error.message);
     }
@@ -48,10 +55,16 @@ export const likePost = (id) => async (dispatch) => {
 
 export const getPostsBySearch = (searchQuery) => async (dispatch) => {
     try {
-        // dispatch({ type: START_LOADING });
+        dispatch({ type: START_LOADING });
+
+        // Get posts
         const { data: { data } } = await api.fetchPostsBySearch(searchQuery);
         dispatch({ type: FETCH_BY_SEARCH, payload: { data } });
-        // dispatch({ type: END_LOADING });
+
+        console.log('Get Posts By Search...');
+        console.log(data);
+
+        dispatch({ type: END_LOADING });
     } catch (error) {
         console.log(error);
     }

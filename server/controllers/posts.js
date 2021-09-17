@@ -4,7 +4,7 @@ import PostMessage from '../models/postMessage.js';
 export const getPosts = async (req, res) => {
     const { page } = req.query;
     try {
-        const LIMIT = 3;
+        const LIMIT = 8;
         const startIndex = (Number(page) - 1) * LIMIT;
         const total = await PostMessage.countDocuments({});
         const posts = await PostMessage.find().sort({ _id: -1 }).limit(LIMIT).skip(startIndex);

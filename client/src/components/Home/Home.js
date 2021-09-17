@@ -1,11 +1,11 @@
 import React from 'react';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Container, Grow, Grid, AppBar, TextField, Button, Paper } from '@material-ui/core';
 import { useDispatch } from 'react-redux';
 import { useHistory, useLocation } from 'react-router-dom';
 import ChipInput from 'material-ui-chip-input';
 
-import { getPosts, getPostsBySearch } from '../../actions/posts';
+import { getPostsBySearch } from '../../actions/posts';
 import Posts from '../../components/Posts/Posts';
 import Form from '../../components/Form/Form';
 import Pagination from '../Pagination';
@@ -94,9 +94,11 @@ const Home = () => {
                         <Form setCurrentId={setCurrentId} currentId={currentId} />
 
                         {/* Pagination */}
-                        <Paper className={classes.pagination} elevation={6}>
-                            <Pagination page={page} />
-                        </Paper>
+                        {(!searchQuery && !tags.length) && (
+                            <Paper className={classes.pagination} elevation={6}>
+                                <Pagination page={page} />
+                            </Paper>
+                        )}
 
                     </Grid>
 
