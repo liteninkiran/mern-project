@@ -45,4 +45,12 @@ export default makeStyles((theme) => ({
         overflowY: 'auto',
         marginRight: '30px',
     },
+    postMessage: {
+        marginTop: '20px',
+        marginBottom: '20px',
+    },
+    postTags: {
+        marginTop: '10px',
+        marginBottom: '10px',
+    },
 }));

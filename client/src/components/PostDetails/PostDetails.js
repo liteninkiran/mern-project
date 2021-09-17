@@ -53,16 +53,16 @@ const PostDetails = () => {
                     <Typography variant="h3" component="h2">{post.title}</Typography>
 
                     {/* Tags */}
-                    <Typography gutterBottom variant="h6" color="textSecondary" component="h2">{post.tags.map((tag) => `#${tag} `)}</Typography>
+                    <Typography  className={classes.postTags} variant="h6" color="textSecondary" component="h2">{post.tags.map((tag) => `#${tag} `)}</Typography>
 
                     {/* Message */}
-                    <Typography gutterBottom variant="body1" component="p">{post.message}</Typography>
+                    <Typography className={classes.postMessage} variant="body1" component="p">{post.message}</Typography>
 
                     {/* Created By */}
-                    <Typography variant="h6">Created by: {post.name}</Typography>
+                    <Typography variant="h6">Created By:</Typography>
 
                     {/* Created At */}
-                    <Typography variant="body1">{moment(post.createdAt).fromNow()}</Typography>
+                    <Typography variant="body1">{post.name}, {moment(post.createdAt).fromNow()}</Typography>
 
                     <Divider style={{ margin: '20px 0' }} />
 
