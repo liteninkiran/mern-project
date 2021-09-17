@@ -6,7 +6,8 @@ import { useDispatch } from 'react-redux';
 import { useHistory, useLocation } from 'react-router-dom';
 import decode from 'jwt-decode';
 
-import memories from '../../images/memories.png';
+import memoriesLogo from '../../images/memories-Logo.png';
+import memoriesText from '../../images/memories-Text.png';
 import useStyles from './styles';
 
 const Navbar = () => {
@@ -40,17 +41,16 @@ const Navbar = () => {
         <AppBar className={classes.appBar} position="static" color="inherit">
 
             {/* Title & App Icon */}
-            <div className={classes.brandContainer}>
+            <Link to="/" className={classes.brandContainer}>
+
 
                 {/* Title */}
-                <Typography component={Link} to="/" className={classes.heading} variant="h2" align="center">
-                    Memories
-                </Typography>
+                <img src={memoriesText} alt="icon" height="45px" />
 
                 {/* App Icon */}
-                <img className={classes.image} src={memories} alt="icon" height="60" />
+                <img className={classes.image} src={memoriesLogo} alt="icon" height="40px" />
 
-            </div>
+            </Link>
 
             {/* User Details / Login */}
             <Toolbar className={classes.toolbar}>
