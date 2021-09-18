@@ -110,25 +110,27 @@ const Auth = () => {
                     </Button>
 
                     {/* Google Login Button */}
-                    <GoogleLogin
-                        clientId="385303831122-ccs6c69v4blfj61vbvl5s83728va6hlc.apps.googleusercontent.com"
-                        render={(renderProps) => (
-                            <Button
-                                className={classes.googleButton}
-                                color="primary"
-                                fullWidth
-                                onClick={renderProps.onClick}
-                                disabled={renderProps.disabled}
-                                startIcon={<Icon />}
-                                variant="contained"
-                            >
-                                Google Sign In
-                            </Button>
-                        )}
-                        onSuccess={googleSuccess}
-                        onFailure={googleFailure}
-                        cookiePolicy="single_host_origin"
-                    />
+                    { !isSignup && (
+                        <GoogleLogin
+                            clientId="385303831122-ccs6c69v4blfj61vbvl5s83728va6hlc.apps.googleusercontent.com"
+                            render={(renderProps) => (
+                                <Button
+                                    className={classes.googleButton}
+                                    color="primary"
+                                    fullWidth
+                                    onClick={renderProps.onClick}
+                                    disabled={renderProps.disabled}
+                                    startIcon={<Icon />}
+                                    variant="contained"
+                                >
+                                    Google Sign In
+                                </Button>
+                            )}
+                            onSuccess={googleSuccess}
+                            onFailure={googleFailure}
+                            cookiePolicy="single_host_origin"
+                        />
+                    )}
 
                     {/* Toggle Sign Up / Sign In */}
                     <Grid container justifyContent="flex-end">
